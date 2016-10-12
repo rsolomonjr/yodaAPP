@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Talk Like Yoda</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+		<link rel="stylesheet" href="css/material.min.css">
+		
+		<style>
+			
+			body{
+				width:100%;
+			}
+
+			h1 {
+				text-align: center;
+			}
+			
+			label {
+				text-shadow: 1px 1px 1px #333;
+			}
+
+			#translator {
+				width: 80%;
+				margin-left: auto;
+				margin-right: auto;
+				border: 1px solid black;
+				padding: 10px;
+				background-color: #00aa00;
+			}
+
+			textarea {
+				width: 400px;
+				height: 100px !important;
+				background-color: #eee;
+			}
+
+			button {
+				width: 400px;
+				font-weight: 700;
+				box-shadow: 2px 2px 2px #aaa !important;
+				background-color: #d4c62f !important;
+			}
+
+			#result {
+				margin-top: 20px;
+				border: 1px solid #ddd;
+				border-radius: .3125em;
+				background-color: #fff;
+				height: 50px;
+				box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
+				text-transform: capitalize;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Talk Like Yoda App... </h1>
+		<div id="translator">
+			<label for="textToTranslate">Text to Translate</label><br>
+			<textarea id="textToTranslate"></textarea><br>
+			<button id="btnTranslate">Translate Text to Yoda Speak</button>
+			<div id="result"></div>
+		</div>
+	<script>
+		window.onload = function(){
+			$('#btnTranslate').on('click', translateText);
+		}
+
+		function translateText(){
+			var textToTranslate = $('#textToTranslate').val();
+			var urL = "https://yoda.p.mashape.com/yoda?sentence=" + textToTranslate;
+			$.ajax({url: urL, 
+				headers: {"X-Mashape-Key": "0zx1ZoLnMamsh0py7blbKyjlkokEp1pU0tCjsnzxPe0pu4dk2h"}, 
+				success: function(result){
+					$("#result").html(result);
+				}});
+		}
+
+	</script>
+	</body>
+</html>
